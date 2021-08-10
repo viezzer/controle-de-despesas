@@ -94,7 +94,7 @@ form.addEventListener('submit', function(event) {
     event.preventDefault()
 
     const transactionName = inputTransactionName.value.trim()
-    const transactionAmount = inputTransactionAmount.value.trim()
+    const transactionAmount = inputTransactionAmount.value.replace(",",".").trim()
 
     if (transactionName === "" || transactionAmount === "") {
         alert("Preencha os dois campos antes de enviar.")
@@ -104,9 +104,9 @@ form.addEventListener('submit', function(event) {
     const transaction = { 
         id: generateID(), 
         name: transactionName, 
-        amount: Number(transactionAmount)
+        amount: parseFloat(transactionAmount)
     }
-    
+    console.log(transaction)
     transactions.push(transaction)
     init()
     updateLocalStorage()
